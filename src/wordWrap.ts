@@ -1,8 +1,7 @@
 /**
  * Main Class
  */
-export class Main {
-  public static COMMANDS = 'Hello World';
+export class WordWrap {
 
   public param: string;
 
