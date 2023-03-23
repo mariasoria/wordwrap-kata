@@ -3,13 +3,13 @@
  */
 export class WordWrap {
 
-  public param: string;
+    public param: string;
 
-  constructor(param: string) {
-    this.param = param;
-  }
+    constructor(param: string) {
+        this.param = param;
+    }
 
-  public getParam(): string {
-    return this.param;
-  }
+    public getParam(): string {
+        return this.param;
+    }
 }
