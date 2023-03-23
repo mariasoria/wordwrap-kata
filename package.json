@@ -1,15 +1,10 @@
 {
-  "name": "typescript-boilerplate",
-  "version": "2.0.0",
-  "description": "Basic boilerplate project with TypeScript for Katas",
+  "name": "wordwrap-kata",
+  "description": "wordwrap-kata",
   "main": "build/index.js",
   "files": [
     "build",
     "!build/**/*.test.*"
-  ],
-  "contributors": [
-    "Adrián Ferrera <adrian.ferrera@leanmind.es>",
-    "Daniel Ramos <daniel.ramos@leanmind.es>"
   ],
   "license": "ISC",
   "scripts": {
