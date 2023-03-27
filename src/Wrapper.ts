@@ -1,19 +1,24 @@
+import {ColumnWidth} from "./ColumnWidth";
+import {Text} from "./Text";
+
+
 /**
  * Main Class
  */
 export class Wrapper {
 
-    static wrap(text: string | null, columnWitdh: number | null): string {
-        if (text === null || text === '') {
-            return '';
-        }
-        if(columnWitdh === null || columnWitdh <= 0) {
-            throw new Error('Column width must be greater than 0');
-        }
-        if (text.length <= columnWitdh) {
-            return text;
-        }
-        return text.substring(0, columnWitdh) + '\\n' + Wrapper.wrap(text.substring(columnWitdh), columnWitdh);
+    static wrap(aText: string | null, aColumnWidth: number | null): string {
+        const text = Text.createText(aText);
+        const columnWidth = ColumnWidth.createColumnWitdh(aColumnWidth);
+        return Wrapper.wrapText(text, columnWidth).text();
     }
 
+    static wrapText(aText: Text, aColumnWidth: ColumnWidth): Text {
+        if (aText.fitsIn(aColumnWidth)) {
+            return aText;
+        }
+        let wrappedLine = aText.wrapLine(aColumnWidth);
+        let remainingText = aText.remainingText(aColumnWidth);
+        return wrappedLine.concat(Wrapper.wrapText(remainingText, aColumnWidth));
+    }
 }
