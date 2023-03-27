@@ -1,6 +1,6 @@
 import {Wrapper} from '../src/Wrapper';
 
-describe('Default test', () => {
+describe('Wrapper', () => {
 
 /*
   * "", 1 -> ""
