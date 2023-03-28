@@ -18,7 +18,6 @@ import {Text} from "../src/Text";
 
 describe('Wrapper', () => {
     it('should not make any changes when there is no text to break in lines', () => {
-        //  should give an error ?? Exception?
         expect(Wrapper.wrap('', 1)).toBe('');
         expect(Wrapper.wrap(null, 1)).toBe('');
     });
