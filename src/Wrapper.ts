@@ -9,7 +9,7 @@ export class Wrapper {
 
     static wrap(aText: string | null, aColumnWidth: number | null): string {
         const text = Text.createText(aText);
-        const columnWidth = ColumnWidth.createColumnWitdh(aColumnWidth);
+        const columnWidth = ColumnWidth.createColumnWidth(aColumnWidth);
         return Wrapper.wrapText(text, columnWidth).value();
     }
 

@@ -5,7 +5,7 @@ export class ColumnWidth {
         this.width = value;
     }
 
-    static createColumnWitdh(value: number | null): ColumnWidth {
+    static createColumnWidth(value: number | null): ColumnWidth {
         if (value === null || value <= 0) {
             throw new Error('Column width must be greater than 0');
         }
