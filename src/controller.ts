@@ -2,10 +2,11 @@ import { Wrapper } from "./Wrapper";
 
 export class Controller {
 
-    public subscribeToEvents(aDocument: Document, {columnWidthId, editorId, applyId}:
+    public subscribeToEvents(aDocument: Document, {columnWidthId, editorId, resultId, applyId}:
         {
             columnWidthId: string,
             editorId: string,
+            resultId: string,
             applyId: string
         }): void {
         const columnWidthInput = aDocument.getElementById(columnWidthId) as HTMLInputElement
@@ -24,9 +25,11 @@ export class Controller {
 
         applyButton!.onclick = () => {
             console.log('Button apply clicked');
-            console.log('ColumnWidth: ', columnWidthInput!.value);
-            console.log('Text: ', editorWidget!.value);
-            console.log('Result: ', Wrapper.wrap(editorWidget!.value, parseInt(columnWidthInput!.value)));
+            console.log('ColumnWidth provided: ', columnWidthInput!.value);
+            console.log('Text provided: ', editorWidget!.value);
+            const result = Wrapper.wrap(editorWidget!.value, parseInt(columnWidthInput!.value));
+            const resultTextArea = aDocument.getElementById(resultId) as HTMLTextAreaElement
+            resultTextArea.value = result;
         }
     }
 }

@@ -7,6 +7,7 @@ export class App {
         aDocument, {
           columnWidthId:'column-width',
           editorId: 'editor',
+          resultId:  'result',
           applyId: 'do-word-wrap'})
   }
 }
