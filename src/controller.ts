@@ -1,3 +1,5 @@
+import { Wrapper } from "./Wrapper";
+
 export class Controller {
 
     public subscribeToEvents(aDocument: Document, {columnWidthId, editorId, applyId}:
@@ -24,6 +26,7 @@ export class Controller {
             console.log('Button apply clicked');
             console.log('ColumnWidth: ', columnWidthInput!.value);
             console.log('Text: ', editorWidget!.value);
+            console.log('Result: ', Wrapper.wrap(editorWidget!.value, parseInt(columnWidthInput!.value)));
         }
     }
 }
