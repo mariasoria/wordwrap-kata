@@ -1,6 +1,4 @@
 import {Wrapper} from '../src/Wrapper';
-import {ColumnWidth} from "../src/ColumnWidth";
-import {Text} from "../src/Text";
 
 
 /*
