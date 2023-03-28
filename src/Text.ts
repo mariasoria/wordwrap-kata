@@ -1,10 +1,10 @@
 import {ColumnWidth} from "./ColumnWidth";
 
 export class Text {
-    private readonly value: string;
+    private readonly text: string;
 
     constructor(value: string) {
-        this.value = value;
+        this.text = value;
     }
 
     static createText(value: string | null): Text {
@@ -15,25 +15,25 @@ export class Text {
     }
 
     fitsIn(columnWidth: ColumnWidth) {
-        return this.value.length <= columnWidth.getValue();
+        return this.text.length <= columnWidth.value();
     }
 
-    public text(): string {
-        return this.value;
+    public value(): string {
+        return this.text;
     }
 
     wrapLine(aColumnWidth: ColumnWidth) {
-        const newText = this.value.substring(0, aColumnWidth.getValue()) + '\\n'
+        const newText = this.text.substring(0, aColumnWidth.value()) + '\\n'
         return Text.createText(newText);
     }
 
     remainingText(aColumnWidth: ColumnWidth) {
-        const remainingText = this.value.substring(aColumnWidth.getValue());
+        const remainingText = this.text.substring(aColumnWidth.value());
         return Text.createText(remainingText);
     }
 
     concat(otherText: Text): Text {
-        let text = this.value + otherText.text();
+        const text = this.text + otherText.value();
         return Text.createText(text);
     }
 }

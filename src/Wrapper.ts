@@ -10,15 +10,15 @@ export class Wrapper {
     static wrap(aText: string | null, aColumnWidth: number | null): string {
         const text = Text.createText(aText);
         const columnWidth = ColumnWidth.createColumnWitdh(aColumnWidth);
-        return Wrapper.wrapText(text, columnWidth).text();
+        return Wrapper.wrapText(text, columnWidth).value();
     }
 
     static wrapText(aText: Text, aColumnWidth: ColumnWidth): Text {
         if (aText.fitsIn(aColumnWidth)) {
             return aText;
         }
-        let wrappedLine = aText.wrapLine(aColumnWidth);
-        let remainingText = aText.remainingText(aColumnWidth);
+        const wrappedLine = aText.wrapLine(aColumnWidth);
+        const remainingText = aText.remainingText(aColumnWidth);
         return wrappedLine.concat(Wrapper.wrapText(remainingText, aColumnWidth));
     }
 }

@@ -49,25 +49,25 @@ describe('Wrapper', () => {
 describe('Wrapper version 2', () => {
     it('should not make any changes when there is no text to break in lines', () => {
         //  should give an error ?? Exception?
-        expect(Wrapper.wrapText(Text.createText(''), ColumnWidth.createColumnWitdh(1)).text())
+        expect(Wrapper.wrapText(Text.createText(''), ColumnWidth.createColumnWitdh(1)).value())
             .toBe('');
-        expect(Wrapper.wrapText(Text.createText(null), ColumnWidth.createColumnWitdh(1)).text())
+        expect(Wrapper.wrapText(Text.createText(null), ColumnWidth.createColumnWitdh(1)).value())
             .toBe('');
     });
 
     it('should not make any changes when the text is shorter than the column width', () => {
-        expect(Wrapper.wrapText(Text.createText('Hello'), ColumnWidth.createColumnWitdh(5)).text())
+        expect(Wrapper.wrapText(Text.createText('Hello'), ColumnWidth.createColumnWitdh(5)).value())
             .toBe('Hello');
-        expect(Wrapper.wrapText(Text.createText('Hello world'), ColumnWidth.createColumnWitdh(11)).text())
+        expect(Wrapper.wrapText(Text.createText('Hello world'), ColumnWidth.createColumnWitdh(11)).value())
             .toBe('Hello world');
     });
 
     it('should break a word if it is longer than the column width ', () => {
-        expect(Wrapper.wrapText(Text.createText("Hello"), ColumnWidth.createColumnWitdh(2)).text())
+        expect(Wrapper.wrapText(Text.createText("Hello"), ColumnWidth.createColumnWitdh(2)).value())
             .toBe('He\\nll\\no');
-        expect(Wrapper.wrapText(Text.createText("Hello world"), ColumnWidth.createColumnWitdh(6)).text())
+        expect(Wrapper.wrapText(Text.createText("Hello world"), ColumnWidth.createColumnWitdh(6)).value())
             .toBe('Hello \\nworld');
-        expect(Wrapper.wrapText(Text.createText("Hello, how are you doing?"), ColumnWidth.createColumnWitdh(7)).text())
+        expect(Wrapper.wrapText(Text.createText("Hello, how are you doing?"), ColumnWidth.createColumnWitdh(7)).value())
             .toBe('Hello, \\nhow are\\n you do\\ning?');
     });
 

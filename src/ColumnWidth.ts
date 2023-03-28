@@ -1,8 +1,8 @@
 export class ColumnWidth {
-    private readonly value: number;
+    private readonly width: number;
 
     constructor(value: number) {
-        this.value = value;
+        this.width = value;
     }
 
     static createColumnWitdh(value: number | null): ColumnWidth {
@@ -12,7 +12,7 @@ export class ColumnWidth {
         return new ColumnWidth(value);
     }
 
-    public getValue(): number {
-        return this.value;
+    public value(): number {
+        return this.width;
     }
 }
