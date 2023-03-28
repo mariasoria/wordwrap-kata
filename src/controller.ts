@@ -23,13 +23,14 @@ export class Controller {
         }
         console.log('Subscribing events...')
 
-        applyButton!.onclick = () => {
+        applyButton.onclick = () => {
             console.log('Button apply clicked');
-            console.log('ColumnWidth provided: ', columnWidthInput!.value);
-            console.log('Text provided: ', editorWidget!.value);
-            const result = Wrapper.wrap(editorWidget!.value, parseInt(columnWidthInput!.value));
+            console.log('ColumnWidth provided: ', columnWidthInput.value);
+            console.log('Text provided: ', editorWidget.value);
+            const result = Wrapper.wrap(editorWidget.value, parseInt(columnWidthInput.value));
             const resultTextArea = aDocument.getElementById(resultId) as HTMLTextAreaElement
-            resultTextArea.value = result;
+            const regex = /\\n/g;
+            resultTextArea.value = result.replace(regex, '\r\n');
         }
     }
 }

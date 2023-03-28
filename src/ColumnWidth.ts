@@ -6,7 +6,7 @@ export class ColumnWidth {
     }
 
     static createColumnWidth(value: number | null): ColumnWidth {
-        if (value === null || value <= 0) {
+        if (value === null || value <= 0 || Number.isNaN(value)) {
             throw new Error('Column width must be greater than 0');
         }
         return new ColumnWidth(value);
