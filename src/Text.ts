@@ -32,6 +32,20 @@ export class Text {
         return Text.createText(remainingText);
     }
 
+    wrapLineParallel(aColumnWidth: ColumnWidth) {
+        const textSplitBySpaces = this.text.split(" ");
+        let newText = "";
+        let word = 0;
+        const lineWithNextWordLength = textSplitBySpaces[word].length + newText.length;
+        while ((word <= textSplitBySpaces.length -1) && // there are more words
+        (lineWithNextWordLength <= aColumnWidth.value())){
+            newText = newText.concat(textSplitBySpaces[word]);
+            word++;
+        }
+        newText = newText.concat("\\n");
+        return Text.createText(newText);
+    }
+
     concat(otherText: Text): Text {
         const text = this.text + otherText.value();
         return Text.createText(text);
