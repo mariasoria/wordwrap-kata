@@ -59,4 +59,8 @@ export class Text {
     private thereAreMoreWords(words: string[], index: number) {
         return words.length > index + 1;
     }
+
+    formatToCRLF(): string {
+        return this.value().replace(/\\n/g, '\r\n');
+    }
 }

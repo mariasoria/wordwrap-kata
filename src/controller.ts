@@ -1,4 +1,6 @@
 import { Wrapper } from "./Wrapper";
+import {Text} from "./Text";
+import {ColumnWidth} from "./ColumnWidth";
 
 export class Controller {
 
@@ -27,10 +29,9 @@ export class Controller {
             console.log('Button apply clicked');
             console.log('ColumnWidth provided: ', columnWidthInput.value);
             console.log('Text provided: ', editorWidget.value);
-            const result = Wrapper.wrap(editorWidget.value, parseInt(columnWidthInput.value));
+            const result = Wrapper.wrapText(Text.createText(editorWidget.value), ColumnWidth.createColumnWidth(parseInt(columnWidthInput.value)));
             const resultTextArea = aDocument.getElementById(resultId) as HTMLTextAreaElement
-            const regex = /\\n/g;
-            resultTextArea.value = result.replace(regex, '\r\n');
+            resultTextArea.value = result.formatToCRLF();
         }
     }
 }
