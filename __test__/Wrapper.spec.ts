@@ -1,18 +1,5 @@
-import {Wrapper} from '../src/Wrapper';
+import { Wrapper } from '../src/Wrapper';
 
-
-/*
-  * "", 1 -> ""
-  * null, 1 -> ""
-  * "hello", 7 -> "hello"
-  * "hello", 3 -> "hel\lo"
-  * "hello", 1 -> "h\ne\nl\l\no"
-  * "hello world", 7 -> "hello w\norld"
-  *
-  * Corner cases:
-  * "hello", -1 -> Exception
-  * "hello", null -> Exception
-  * */
 
 describe('Wrapper', () => {
     it('should not make any changes when there is no text to break in lines', () => {
