@@ -27,9 +27,9 @@ describe('Wrapper', () => {
 
     it('should break a word if it is longer than the column width ', () => {
         expect(Wrapper.wrap("Hello", 2)).toBe('He\\nll\\no');
-        expect(Wrapper.wrap("Hello world", 6)).toBe('Hello \\nworld');
+        expect(Wrapper.wrap("Hello world", 6)).toBe('Hello\\nworld');
         expect(Wrapper.wrap("Hello, how are you doing?", 7))
-            .toBe('Hello, \\nhow are\\n you do\\ning?');
+            .toBe('Hello,\\nhow are\\nyou\\ndoing?');
     });
 
     it('should display an error when the user introduces a negative columnWidth value', () => {
