@@ -1,4 +1,4 @@
-import {ColumnWidth} from "./ColumnWidth";
+import { ColumnWidth } from "./ColumnWidth";
 
 export class Text {
     private readonly text: string;
@@ -14,12 +14,13 @@ export class Text {
         return new Text(value);
     }
 
-    fitsIn(columnWidth: ColumnWidth) {
-        return this.text.length <= columnWidth.value();
+    concat(otherText: Text): Text {
+        const text = this.text + otherText.value();
+        return Text.createText(text);
     }
 
-    public value(): string {
-        return this.text;
+    fitsIn(columnWidth: ColumnWidth) {
+        return this.text.length <= columnWidth.value();
     }
 
     remainingText(aColumnWidth: ColumnWidth) {
@@ -31,7 +32,7 @@ export class Text {
         let index = 0;
         const words = this.text.split(' ');
         const wordHasToBeSplit = words[index].length > aColumnWidth.value();
-        if(wordHasToBeSplit) {
+        if (wordHasToBeSplit) {
             const newText = this.text.substring(0, aColumnWidth.value()) + '\\n'
             return Text.createText(newText);
         }
@@ -41,7 +42,7 @@ export class Text {
             index++;
             const nextWord = words[index];
             const nextWordFits = nextWord.length + line.length + 1 <= aColumnWidth.value();
-            if(nextWordFits) {
+            if (nextWordFits) {
                 line += ' ' + words[index];
             } else {
                 break;
@@ -51,16 +52,15 @@ export class Text {
         return Text.createText(newText);
     }
 
-    concat(otherText: Text): Text {
-        const text = this.text + otherText.value();
-        return Text.createText(text);
+    formatToCRLF(): string {
+        return this.value().replace(/\\n/g, '\r\n');
     }
 
     private thereAreMoreWords(words: string[], index: number) {
         return words.length > index + 1;
     }
 
-    formatToCRLF(): string {
-        return this.value().replace(/\\n/g, '\r\n');
+    public value(): string {
+        return this.text;
     }
 }
