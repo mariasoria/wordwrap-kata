@@ -22,32 +22,41 @@ export class Text {
         return this.text;
     }
 
-    wrapLine(aColumnWidth: ColumnWidth) {
-        const newText = this.text.substring(0, aColumnWidth.value()) + '\\n'
-        return Text.createText(newText);
-    }
-
     remainingText(aColumnWidth: ColumnWidth) {
         const remainingText = this.text.substring(aColumnWidth.value());
-        return Text.createText(remainingText);
+        return Text.createText(remainingText.trim());
     }
 
-    wrapLineParallel(aColumnWidth: ColumnWidth) {
-        const textSplitBySpaces = this.text.split(" ");
-        let newText = "";
-        let word = 0;
-        const lineWithNextWordLength = textSplitBySpaces[word].length + newText.length;
-        while ((word <= textSplitBySpaces.length -1) && // there are more words
-        (lineWithNextWordLength <= aColumnWidth.value())){
-            newText = newText.concat(textSplitBySpaces[word]);
-            word++;
+    wrapLine(aColumnWidth: ColumnWidth) {
+        let index = 0;
+        const words = this.text.split(' ');
+        const wordHasToBeSplit = words[index].length > aColumnWidth.value();
+        if(wordHasToBeSplit) {
+            const newText = this.text.substring(0, aColumnWidth.value()) + '\\n'
+            return Text.createText(newText);
         }
-        newText = newText.concat("\\n");
+
+        let line = words[index];
+        while (line.length <= aColumnWidth.value() && this.thereAreMoreWords(words, index)) {
+            index++;
+            const nextWord = words[index];
+            const nextWordFits = nextWord.length + line.length + 1 <= aColumnWidth.value();
+            if(nextWordFits) {
+                line += ' ' + words[index];
+            } else {
+                break;
+            }
+        }
+        const newText = this.text.substring(0, line.length) + '\\n'
         return Text.createText(newText);
     }
 
     concat(otherText: Text): Text {
         const text = this.text + otherText.value();
         return Text.createText(text);
+    }
+
+    private thereAreMoreWords(words: string[], index: number) {
+        return words.length > index + 1;
     }
 }

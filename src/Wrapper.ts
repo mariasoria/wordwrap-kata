@@ -18,7 +18,12 @@ export class Wrapper {
             return aText;
         }
         const wrappedLine = aText.wrapLine(aColumnWidth);
-        const remainingText = aText.remainingText(aColumnWidth);
+        const newColumnWidth = Wrapper.getColumnWidthFrom(wrappedLine);
+        const remainingText = aText.remainingText(newColumnWidth);
         return wrappedLine.concat(Wrapper.wrapText(remainingText, aColumnWidth));
+    }
+
+    private static getColumnWidthFrom(wrappedLine: Text) {
+        return ColumnWidth.createColumnWidth(wrappedLine.value().length - 2);
     }
 }
