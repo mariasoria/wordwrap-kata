@@ -38,7 +38,7 @@ export class Text {
         }
 
         let line = words[index];
-        while (line.length <= aColumnWidth.value() && this.thereAreMoreWords(words, index)) {
+        while (this.isThereSpaceAvailableInTheLine(line, aColumnWidth) && this.thereAreMoreWords(words, index)) {
             index++;
             const nextWord = words[index];
             const nextWordFits = nextWord.length + line.length + 1 <= aColumnWidth.value();
@@ -50,6 +50,10 @@ export class Text {
         }
         const newText = this.text.substring(0, line.length) + '\\n'
         return Text.createText(newText);
+    }
+
+    private isThereSpaceAvailableInTheLine(line: string, aColumnWidth: ColumnWidth) {
+        return line.length <= aColumnWidth.value();
     }
 
     formatToCRLF(): string {
